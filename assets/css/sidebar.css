@@ -1,0 +1,148 @@
+/* Custom Side Navbar */
+.sidenavbar {
+  position: fixed;
+  top: 0;
+  width: 5rem;
+  height: 100vh;
+  background-color: var(--util-color-bg-dark);
+  z-index: 1000;
+  transition: width 100ms ease, background-color 0.3s ease;
+}
+
+.navbar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav-item {
+  width: 100%;
+}
+
+.nav-item:last-child {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: var(--util-color-primary);
+  transition: background-color 0.3s ease;
+}
+
+/* Logo Styles */
+.logo {
+  background-color: var(--util-color-bg-light);
+  font-weight: var(--util-fw-bold);
+  font-size: var(--util-fs-2xl);
+  color: var(--util-color-text);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  text-align: center;
+  letter-spacing: 0.3rem;
+  width: 100%;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.logo-img {
+  border-radius: 10%;
+  width: 45px;
+  min-width: 2rem;
+  margin: 0 1.4rem;
+}
+
+/* Navigation Link Styles */
+.nav-link {
+  display: flex;
+  align-items: center;
+  height: 5rem;
+  color: var(--util-color-text);
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: var(--util-color-bg-light);
+}
+
+.link-text {
+  display: none;
+  margin-left: 1rem;
+  opacity: 0;
+  transition: opacity 0.1s ease-in-out;
+}
+
+.bx {
+  font-size: var(--util-fs-3xl);
+  min-width: 2rem;
+  margin: 0 1.4rem;
+}
+
+/* Sidebar Hover Effects */
+.sidenavbar:hover {
+  width: 15rem;
+}
+
+.sidenavbar:hover .link-text {
+  display: block;
+  opacity: 1;
+}
+
+/* Responsive Design */
+
+/* Small Screens (max-width: 600px) */
+@media only screen and (max-width: 600px) {
+  .sidenavbar {
+    bottom: 0;
+    top: auto;
+    width: 100vw;
+    height: 5rem;
+  }
+
+  .sidenavbar:hover {
+    width: 100vw;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .navbar-nav {
+    flex-direction: row;
+  }
+
+  .nav-item:last-child {
+    display: none;
+  }
+
+  .nav-link {
+    justify-content: center;
+  }
+
+  .sidenavbar:hover .link-text {
+    display: none;
+  }
+
+  main {
+    margin: 0;
+  }
+}
+
+/* Large Screens (min-width: 600px) */
+@media only screen and (min-width: 600px) {
+  .sidenavbar:hover {
+    width: 16rem;
+  }
+
+  .sidenavbar:hover .link-text {
+    display: inline;
+  }
+
+  .sidenavbar:hover .logo svg {
+    margin-left: 11rem;
+  }
+
+  .sidenavbar:hover .logo-text {
+    left: 0;
+  }
+}

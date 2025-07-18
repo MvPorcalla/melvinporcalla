@@ -1,0 +1,128 @@
+/*main.css - global css */
+
+/* ==================================================== Scroll Bar ======================================================= */
+
+/* Custom scrollbar styles for WebKit browsers */
+body::-webkit-scrollbar {
+  width: 0.25rem;
+}
+body::-webkit-scrollbar-track {
+  background: var(--util-color-bg);
+}
+body::-webkit-scrollbar-thumb {
+  background: var(--util-color-accent);
+}
+body::-webkit-scrollbar-thumb:hover {
+  background: var(--util-color-primary);
+}
+
+/* ======================================================================================================================== */
+
+/* Reset and Layout */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 4rem; /* optional */
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  font-family: var(--util-ff-primary), 'Open Sans', Arial, sans-serif;
+  background-color: var(--util-color-bg);
+  color: var(--util-color-text);
+  font-size: var(--util-fs-base);
+  font-weight: var(--util-fw-normal);
+  line-height: 1.5;
+  margin: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+main {
+  margin-left: 5rem;
+  padding: 1rem;
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+/* Small Screens (max-width: 600px) */
+@media only screen and (max-width: 600px) {
+    main {
+        margin-left: 0;
+    }
+}
+
+footer {
+    flex-shrink: 0;
+    padding: 1rem 1.5rem;
+    background-color: transparent;
+    backdrop-filter: blur(10px); /* Reduced for performance */
+    color: var(--mvp-color-nav-text);
+    border-top: 1px solid var(--mvp-color-bg-light);
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        backdrop-filter 0.3s ease;
+}
+
+footer p {
+    margin: 0;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section-full {
+  min-height: 100vh;
+}
+
+.day-night-theme {
+  position: fixed;
+  right: 1.25rem;
+  margin-top: 1.25rem;
+  cursor: pointer;
+}
+
+
+.nav-link.active {
+  background-color: var(--util-color-primary);
+  color: var(--util-color-light); /* optional */
+}
+
+/* Toggle Button Style (Optional) */
+#themeToggle {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+/* Toggle Button Styling */
+.Theme-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+}
+.Theme-toggle button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+

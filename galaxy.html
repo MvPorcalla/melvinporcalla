@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grok Galaxy Background with Shooting Stars</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: radial-gradient(circle at center, #1a1a2e 0%, #000000 70%);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .galaxy-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .galaxy-background.active {
+            opacity: 0.7; /* Subtle overlay effect */
+        }
+
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            box-shadow: 
+                100px 200px 1px #ffffff,
+                300px 400px 1px #e0e0e0,
+                600px 100px 1px #d9d9d9,
+                800px 600px 1px #f5f5f5,
+                200px 700px 1px #cccccc,
+                400px 300px 1px #e6e6e6,
+                700px 500px 1px #ffffff,
+                900px 200px 1px #d9d9d9,
+                150px 350px 1px #f0f0f0,
+                500px 250px 1px #e5e5e5;
+            animation: twinkle 5s infinite alternate;
+        }
+
+        .stars-medium {
+            box-shadow: 
+                150px 250px 1.5px #ffffff,
+                350px 450px 1.5px #e0e0e0,
+                650px 150px 1.5px #d9d9d9,
+                850px 650px 1.5px #f5f5f5,
+                250px 750px 1.5px #cccccc,
+                450px 350px 1.5px #e6e6e6,
+                550px 550px 1.5px #ffffff,
+                750px 300px 1.5px #d9d9d9;
+            animation-duration: 7s;
+        }
+
+        .stars-large {
+            box-shadow: 
+                200px 300px 2px #ffffff,
+                400px 500px 2px #e0e0e0,
+                700px 200px 2px #d9d9d9,
+                900px 700px 2px #f5f5f5,
+                300px 600px 2px #cccccc,
+                600px 400px 2px #e6e6e6;
+            animation-duration: 10s;
+        }
+
+        .nebula {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 30%, rgba(50, 50, 150, 0.2) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 70%, rgba(150, 50, 100, 0.2) 0%, transparent 50%);
+            opacity: 0.3;
+            animation: nebula-glow 15s infinite alternate;
+        }
+
+        #galaxyCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        #galaxyCanvas.active {
+            opacity: 0.7; /* Subtle overlay effect */
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.7; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.2); }
+        }
+
+        @keyframes nebula-glow {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <div class="galaxy-background">
+        <div class="stars stars-small"></div>
+        <div class="stars stars-medium"></div>
+        <div class="stars stars-large"></div>
+        <div class="nebula"></div>
+    </div>
+    <canvas id="galaxyCanvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById('galaxyCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const stars = [];
+        const shootingStars = [];
+        for (let i = 0; i < 200; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 2,
+                opacity: Math.random() * 0.5 + 0.5
+            });
+        }
+
+        function createShootingStar() {
+            const startX = Math.random() * canvas.width;
+            const startY = Math.random() * canvas.height / 4; // Start near top
+            const angle = Math.random() * Math.PI / 4 + Math.PI / 8; // Diagonal trajectory
+            shootingStars.push({
+                x: startX,
+                y: startY,
+                length: 50,
+                speed: 10,
+                opacity: 1,
+                vx: Math.cos(angle) * 10,
+                vy: Math.sin(angle) * 10,
+                life: 30 // Frames to live
+            });
+        }
+
+        function animateCanvas() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw static stars
+            stars.forEach(star => {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+                ctx.fill();
+                star.opacity += (Math.random() - 0.5) * 0.02;
+                star.opacity = Math.max(0.5, Math.min(1, star.opacity));
+            });
+
+            // Draw shooting stars
+            shootingStars.forEach((star, index) => {
+                ctx.beginPath();
+                ctx.moveTo(star.x, star.y);
+                ctx.lineTo(star.x - star.vx * star.length / star.speed, star.y - star.vy * star.length / star.speed);
+                ctx.strokeStyle = `rgba(255, 255, 255, ${star.opacity})`;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
+                // Update position
+                star.x += star.vx;
+                star.y += star.vy;
+                star.life -= 1;
+                star.opacity = star.life / 30;
+
+                // Remove when life expires
+                if (star.life <= 0) {
+                    shootingStars.splice(index, 1);
+                }
+            });
+
+            // Randomly spawn shooting stars
+            if (Math.random() < 0.01) { // 1% chance per frame
+                createShootingStar();
+            }
+
+            requestAnimationFrame(animateCanvas);
+        }
+        animateCanvas();
+
+        const galaxyBackground = document.querySelector('.galaxy-background');
+        const galaxyCanvas = document.getElementById('galaxyCanvas');
+        let idleTimeout;
+
+        function showGalaxy() {
+            galaxyBackground.classList.add('active');
+            galaxyCanvas.classList.add('active');
+        }
+
+        function hideGalaxy() {
+            galaxyBackground.classList.remove('active');
+            galaxyCanvas.classList.remove('active');
+        }
+
+        function resetIdleTimer() {
+            clearTimeout(idleTimeout);
+            hideGalaxy();
+            idleTimeout = setTimeout(showGalaxy, 5000);
+        }
+
+        resetIdleTimer();
+
+        ['mousemove', 'click', 'keypress', 'scroll'].forEach(event => {
+            window.addEventListener(event, resetIdleTimer);
+        });
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            stars.forEach(star => {
+                star.x = Math.random() * canvas.width;
+                star.y = Math.random() * canvas.height;
+            });
+        });
+    </script>
+</body>
+</html>

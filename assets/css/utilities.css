@@ -1,0 +1,98 @@
+/* utilities.css */
+
+/* ================= Fonts ================= */
+:root {
+    /* Font Families */
+    --util-ff-primary: 'Montserrat', sans-serif;
+    --util-ff-secondary: 'Merriweather', serif;
+    --util-ff-terminal: 'Fira Code', monospace;
+
+    /* Font Sizes */
+    --util-fs-xs: 0.75rem;
+    --util-fs-sm: 0.875rem;
+    --util-fs-base: 1rem;
+    --util-fs-lg: 1.125rem;
+    --util-fs-xl: 1.25rem;
+    --util-fs-2xl: 1.5rem;
+    --util-fs-3xl: 1.875rem;
+    --util-fs-4xl: 2.25rem;
+    --util-fs-5xl: 3rem;
+    --util-fs-6xl: 3.75rem;
+
+    /* Font Weights */
+    --util-fw-normal: 400;
+    --util-fw-medium: 500;
+    --util-fw-semibold: 600;
+    --util-fw-bold: 700;
+    --util-fw-extrabold: 800;
+
+    /* Brand Colors */
+    --util-color-primary: #ea580c;
+    --util-color-secondary: #f97316;
+    --util-color-accent: #c2410c;
+
+    --util-color-text: #f1f1f1;
+    --util-color-text-muted: #a1a1a1;
+    --util-color-text-inverse: #222222;
+
+    --util-color-bg: #161718;
+    --util-color-bg-dark: #121212;
+    --util-color-bg-light: #222222;
+
+    --util-color-gradient: linear-gradient(to right, #0f0f0f, #1a1a1a, #262626);
+}
+
+/* ================= Light Mode Variables ================= */
+[data-theme="light"] {
+    --util-color-text: #2c2c2c;
+    --util-color-text-muted: #6b7280;
+    --util-color-text-inverse: #ffffff;
+
+    --util-color-bg: #e8dfec;
+    --util-color-bg-light: #f2f2f2;
+    --util-color-bg-dark: #fdf9ff;
+
+    --util-color-gradient: linear-gradient(to right, #ffffff, #fefefe, #fcfcfc);
+}
+
+/* ================= Utility Classes ================= */
+
+/* Font Families */
+.util-font-primary { font-family: var(--util-ff-primary); }
+.util-font-secondary { font-family: var(--util-ff-secondary); }
+
+/* Font Sizes */
+.util-text-xs { font-size: var(--util-fs-xs); }
+.util-text-sm { font-size: var(--util-fs-sm); }
+.util-text-base { font-size: var(--util-fs-base); }
+.util-text-lg { font-size: var(--util-fs-lg); }
+.util-text-xl { font-size: var(--util-fs-xl); }
+.util-text-2xl { font-size: var(--util-fs-2xl); }
+.util-text-3xl { font-size: var(--util-fs-3xl); }
+.util-text-4xl { font-size: var(--util-fs-4xl); }
+.util-text-5xl { font-size: var(--util-fs-5xl); }
+.util-text-6xl { font-size: var(--util-fs-6xl); }
+
+/* Font Weights */
+.util-weight-normal { font-weight: var(--util-fw-normal); }
+.util-weight-medium { font-weight: var(--util-fw-medium); }
+.util-weight-semibold { font-weight: var(--util-fw-semibold); }
+.util-weight-bold { font-weight: var(--util-fw-bold); }
+.util-weight-extrabold { font-weight: var(--util-fw-extrabold); }
+
+/* Text Colors */
+.util-text-primary { color: var(--util-color-primary); }
+.util-text-secondary { color: var(--util-color-secondary); }
+.util-text-accent { color: var(--util-color-accent); }
+.util-text-muted { color: var(--util-color-text-muted); }
+.util-text-base { color: var(--util-color-text); }
+.util-text-inverse { color: var(--util-color-text-inverse); }
+
+/* Background Colors */
+.util-bg-primary { background-color: var(--util-color-primary); }
+.util-bg-secondary { background-color: var(--util-color-secondary); }
+.util-bg-accent { background-color: var(--util-color-accent); }
+.util-bg-light { background-color: var(--util-color-bg-light); }
+.util-bg-dark { background-color: var(--util-color-bg-dark); }
+.util-bg-base { background-color: var(--util-color-bg); }
+.util-bg-gradient { background: var(--util-color-gradient); }
