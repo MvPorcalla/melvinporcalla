@@ -100,37 +100,38 @@ footer p {
   scroll-margin-top: 1rem;
 }
 
-.day-night-theme {
-  position: fixed;
-  right: 1.25rem;
-  margin-top: 1.25rem;
-  cursor: pointer;
-}
-
-.nav-link.active {
-  background-color: var(--util-color-primary);
-  color: var(--util-color-light); /* optional */
-}
-
-/* Toggle Button Style (Optional) */
-#themeToggle {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: var(--text-color);
-}
-
-/* Toggle Button Styling */
+/* Theme Toggle Wrapper */
 .Theme-toggle {
   position: fixed;
   top: 1rem;
   right: 1rem;
-}
-.Theme-toggle button {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
+  z-index: 1100;
 }
 
+/* Square Toggle Button */
+.Theme-toggle button {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: var(--util-color-bg-light);
+  border: 1px solid var(--util-color-border, #ccc);
+  border-radius: 0.25rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  padding: 0; /* optional: remove internal space */
+}
+
+/* Icon Inside the Toggle */
+.Theme-toggle button i {
+  font-size: 1.5rem;
+  color: var(--util-color-primary);
+}
+
+/* Hover Effect */
+.Theme-toggle button:hover {
+  background-color: var(--util-color-bg-dark);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}

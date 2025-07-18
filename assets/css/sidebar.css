@@ -1,14 +1,17 @@
-/* Custom Side Navbar */
+/* ===================== Custom Side Navbar ===================== */
 .sidenavbar {
   position: fixed;
   top: 0;
+  left: 0;
   width: 5rem;
   height: 100vh;
   background-color: var(--util-color-bg-dark);
   z-index: 1000;
-  transition: width 100ms ease, background-color 0.3s ease;
+  overflow: hidden;
+  transition: width 300ms ease, background-color 0.3s ease;
 }
 
+/* Navbar Layout */
 .navbar-nav {
   list-style: none;
   padding: 0;
@@ -30,7 +33,7 @@
   transition: background-color 0.3s ease;
 }
 
-/* Logo Styles */
+/* ===================== Logo ===================== */
 .logo {
   background-color: var(--util-color-bg-light);
   font-weight: var(--util-fw-bold);
@@ -42,16 +45,38 @@
   letter-spacing: 0.3rem;
   width: 100%;
   transition: background-color 0.3s ease, color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  overflow: hidden;
 }
 
 .logo-img {
   border-radius: 10%;
   width: 45px;
   min-width: 2rem;
-  margin: 0 1.4rem;
+  margin: 0 1.4rem 0 1rem;
+  transition: transform 0.3s ease;
 }
 
-/* Navigation Link Styles */
+/* Optional: Add fade-in for text */
+.logo-text {
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+/* When sidebar is collapsed */
+.sidenavbar.collapsed .logo-text {
+  opacity: 0;
+  transition-delay: 0.1s;
+  pointer-events: none;
+  width: 0;
+}
+
+
+/* ===================== Navigation Link ===================== */
 .nav-link {
   display: flex;
   align-items: center;
@@ -59,6 +84,11 @@
   color: var(--util-color-text);
   text-decoration: none;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-link.active {
+  background-color: var(--util-color-primary);
+  color: var(--util-color-light); /* optional */
 }
 
 .nav-link:hover {
@@ -69,7 +99,7 @@
   display: none;
   margin-left: 1rem;
   opacity: 0;
-  transition: opacity 0.1s ease-in-out;
+  transition: opacity 0.3s ease 100ms;
 }
 
 .bx {
@@ -78,17 +108,18 @@
   margin: 0 1.4rem;
 }
 
-/* Sidebar Hover Effects */
+/* ===================== Sidebar Hover Effect ===================== */
 .sidenavbar:hover {
   width: 15rem;
+  transition: width 300ms ease;
 }
 
 .sidenavbar:hover .link-text {
-  display: block;
+  display: inline;
   opacity: 1;
 }
 
-/* Responsive Design */
+/* ===================== Responsive Design ===================== */
 
 /* Small Screens (max-width: 600px) */
 @media only screen and (max-width: 600px) {
