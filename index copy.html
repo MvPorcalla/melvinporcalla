@@ -44,81 +44,17 @@
 </head>
 
 <style>
-  /* Fill the screen */
   #profile {
     height: 100vh;
-    padding: 1rem 0;
-    display: flex;
-    align-items: center;
   }
 
-  .profile-grid {
-    display: flex;
-    gap: 0.5rem;
-    height: 100%;
-  }
-
-  .profile-left {
-    flex: 2;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .profile-right {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .profile-info {
-    height: 70%;
-  }
-  .profile-stats {
-    height: 30%;
-  }
-  .profile-experience {
-    height: 60%;
-  }
-  .profile-skills {
-    height: 40%;
-  }
-
-  .box {
-    background-color: #2d2d2d;
-    padding: 1rem;
-    overflow: hidden;
-  }
-
-  @media (max-width: 768px) {
-    #profile {
-      height: auto; /* Let content decide the height */
-      align-items: flex-start;
-    }
-
-    .profile-grid {
-      flex-direction: column;
-      height: auto;
-    }
-
-    .profile-left,
-    .profile-right {
-      width: 100%;
-      flex: unset;
-      gap: 0.5rem;
-    }
-
-    .profile-info,
-    .profile-stats,
-    .profile-experience,
-    .profile-skills {
-      height: auto;
-    }
-    .profile-stats {
-      flex-direction: column;  /* Stack stats vertically */
-    }
-  }
+  .profile .col-12,
+  .github-stats .col-7,
+  .github-stats .col-5,
+  .experience .col-12,
+  .skills .col-12 {
+  height: 150px;
+}
 
 </style>
 
@@ -156,7 +92,7 @@
 
       <li class="nav-item">
         <a href="#service" class="nav-link">
-          <i class="bx bx-cog fa-icon"></i>
+          <i class="bx bx-cog fa-icon"></i> <!-- Changed from bx-user to bx-cog -->
           <span class="link-text">Service</span>
         </a>
       </li>
@@ -188,48 +124,49 @@
 
     <!-- ================ PROFILE SECTION ================ -->
     <section class="profile section-full" id="profile">
-      <div class="container-fluid px-0">
-        <div class="profile-grid">
+      <div class="container-fluid my-3">
+        <div class="row text-center">
 
-          <div class="profile-left">
+          <!-- left side -->
+          <div class="col-7">
 
-            <div class="box profile-info">
-              <h3>Profile</h3>
+              <div class="row profile-info">
+                <div class="col-12 border">
+                    Profile
+                </div>
+              </div>
 
-              <p class="mb-0">Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                Sequi quia obcaecati aperiam ad sapiente dolore nulla voluptates tempora accusantium quos, 
-                maiores omnis quisquam? Vero quaerat molestias reprehenderit in eveniet sunt.
-              </p>
+              <div class="row github-stats">
+                <div class="col-7 border">
+                  github stats
+                </div>
+                <div class="col-5 border">
+                  most used language
+                </div>
+
+              </div>
+          </div>
+
+          <!-- right side -->
+          <div class="col-5">
+
+            <div class="row experience">
+              <div class="col-12 border">
+                experience
+              </div>
             </div>
 
-            <div class="profile-stats d-flex gap-2">
-              <div class="box flex-fill">
-                GitHub Stats
-              </div>
-              <div class="box flex-fill">
-                Most Used Language
-
+            <div class="row skills ">
+              <div class="col-12 border">
+                skills
               </div>
             </div>
 
           </div>
 
-          <div class="profile-right">
-
-            <div class="box profile-experience">
-              Experience
-            </div>
-            <div class="box profile-skills">
-              Skills
-            </div>
-
-          </div>
         </div>
 
-      </div>
     </section>
-
-
 
     <!-- ================ PORTFOLIO SECTION ================ -->
     <section class="portfolio section-full bg-warning" id="portfolio">
