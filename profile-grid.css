@@ -1,0 +1,136 @@
+ /* Fill the screen */
+  #profile {
+    height: 100dvh;
+    padding: 1rem 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .profile-grid {
+    display: flex;
+    gap: 0.5rem;
+    height: 100%;
+  }
+
+  .profile-left,
+  .profile-right {
+    height: 100%;
+  }
+
+  .profile-left {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .profile-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .profile-info {
+    /* flex-grow: 7; */
+    height: 70%;
+  }
+  .profile-stats {
+    /* flex-grow: 3; */
+    height: 30%;
+  }
+  .profile-experience {
+    flex-grow: 3;
+  }
+  .profile-skills {
+    flex-grow: 2;
+  }
+
+  .box {
+    padding: 1rem;
+    overflow: hidden;
+  }
+
+  .profile-stats .box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0;
+  }
+  .stats-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  @media (max-width: 767px) {
+    #profile {
+      height: auto;
+      padding: 0;
+      align-items: flex-start;
+    }
+
+    .profile-grid {
+      flex-direction: column;
+      height: auto;
+    }
+
+    .profile-left,
+    .profile-right {
+      display: contents;
+      width: 100%;
+      flex: unset;
+      gap: 0.5rem;
+    }
+
+    .profile-stats {
+      flex-direction: column; 
+    }
+
+    .profile-info,
+    .profile-stats,
+    .profile-experience,
+    .profile-skills {
+      height: auto;
+    }
+
+    /* Reorder on mobile only */
+    .profile-order-info { order: 1; }
+    .profile-order-stats { order: 3; }
+    .profile-order-experience { order: 4; }
+    .profile-order-skills { order: 2; }
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    #profile {
+      height: auto;
+      align-items: flex-start;
+    }
+
+    .profile-grid {
+      flex-direction: column;
+      height: auto;
+    }
+
+    .profile-left,
+    .profile-right {
+      display: contents;
+      width: 100%;
+      flex: unset;
+      gap: 0.5rem;
+    }
+
+    .profile-info,
+    .profile-stats,
+    .profile-experience,
+    .profile-skills {
+      height: auto;
+    }
+
+    /* Reorder on mobile only */
+    .profile-order-info { order: 1; }
+    .profile-order-stats { order: 3; }
+    .profile-order-experience { order: 4; }
+    .profile-order-skills { order: 2; }
+  }
