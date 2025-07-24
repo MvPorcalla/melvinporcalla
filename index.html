@@ -12,6 +12,9 @@
 
   <!-- Favicon -->
   <link rel="icon" href="./assets/images/favicon_io/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="./assets/images/favicon_io/favicon.ico" sizes="any">
+  <link rel="icon" href="./assets/images/favicon_io/favicon.svg" type="image/svg+xml">
+
   <link rel="apple-touch-icon" href="./assets/images/favicon_io/apple-touch-icon.png">
   <link rel="manifest" href="./assets/images/favicon_io/site.webmanifest">
 
@@ -22,7 +25,7 @@
   <!-- Open Graph / Facebook -->
   <meta property="og:title" content="Melvin Porcalla | Frontend Developer">
   <meta property="og:description" content="Explore my projects and see how I bring ideas to life through modern web design.">
-  <meta property="og:image" content="./assets/images/preview.jpg">  <!-- add preview image on the assets/iamges -->
+  <meta property="og:image" content="./assets/images/preview.jpg">  <!-- add preview image on the assets/images -->
   <meta property="og:url" content="https://mvporcalla.github.io/melvinporcalla/">
   <meta property="og:type" content="website">
 
@@ -50,9 +53,142 @@
 
 <style>
 
-  .box {
-    background-color: #2d2d2d;
+  .box-border {
+    /* background-color: #2d2d2d; */
+    border: 2px solid #2d2d2d;
   }
+
+  body.freeze-scroll {
+    overflow: hidden;
+    height: 100dvh; /* Prevent mobile scrolling */
+  }
+
+  .expandable-box {
+    transition: all 0.5s ease;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Text overlay on hover */
+  .expandable-box::after {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border-radius: 0.5rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  /* Show on hover */
+  .expandable-box:hover::after {
+    opacity: 1;
+    content: attr(data-hovertext);
+  }
+
+  /* When expanded */
+  .expandable-box.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100dvh;
+    background: #2d2d2d;
+    z-index: 9999;
+    overflow-y: auto;
+    padding: 2rem;
+    animation: fadeIn 0.4s ease-in-out;
+  }
+
+  /* Optional: Hide other content */
+  .profile-grid.expanded .profile-left,
+  .profile-grid.expanded .profile-right {
+    visibility: hidden;
+  }
+
+  .profile-grid.expanded .fullscreen {
+    visibility: visible;
+    z-index: 10000;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @media (max-width: 992px) {
+  .expandable-box::after {
+    display: none !important;
+  }
+}
+
+
+
+/* Skill Icons (Grid View) */
+.skills-preview {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+  gap: 0.5rem;
+  justify-items: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+/* Icon Box */
+.tech-icon {
+  width: 64px;
+  height: 64px;
+  padding: 12px;
+}
+
+
+
+.tech-icon > i,
+.tech-icon > img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+
+
+.expandable-box .box-detail {
+  display: none;
+}
+
+.expandable-box.fullscreen .box-preview {
+  display: none;
+}
+
+.expandable-box.fullscreen .box-detail {
+  display: block;
+}
+
+.fullscreen {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: white;
+  z-index: 1000;
+  overflow-y: auto;
+  padding: 2rem;
+}
+
+
 
 </style>
 
@@ -127,7 +263,7 @@
 
           <div class="profile-left">
 
-            <div class="box profile-info profile-order-info">
+            <div class="box box-border profile-info profile-order-info">
               <h4>Profile</h4>
 
               <p class="mb-0">Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
@@ -139,6 +275,7 @@
             <div class="profile-stats d-flex gap-1 profile-order-stats">
               <div class="box flex-fill d-flex align-items-center justify-content-center">
                 <img 
+                  loading="lazy"
                   src="https://github-readme-stats.vercel.app/api?username=mvporcalla&show_icons=true&theme=radical&count_private=true&include_all_commits=true" 
                   alt="Melvin's GitHub Stats" 
                   class="stats-img img-fluid" />
@@ -146,6 +283,7 @@
 
               <div class="box flex-fill d-flex align-items-center justify-content-center">
                 <img 
+                  loading="lazy"
                   src="https://github-readme-stats.vercel.app/api/top-langs/?username=mvporcalla&layout=compact&theme=radical" 
                   alt="Top Languages" 
                   class="stats-img img-fluid" />
@@ -156,11 +294,42 @@
 
           <div class="profile-right">
 
-            <div class="box profile-experience profile-order-experience">
+            <div class="box box-border profile-experience profile-order-experience expandable-box" data-hovertext="Click to show more">
               <h4>Experience</h4>
+
+              <p>
+                Pixel8 Web Solutions and Consultancy Inc. | February 2024 - May 2024 
+                  Gained proficiency in Git commands, Vue.js, and Quasar during onboarding. 
+                  Facilitated smooth onboarding for new interns as QA, troubleshooting their progress and providing 
+                  support for successful knowledge transfer. 
+                  Developed and optimized responsive web system UIs using Vue.js, Quasar, and JavaScript. 
+                  Collaborated closely with the UI/UX team to address and resolve discrepancies between designs and 
+                  functionality. 
+                  Participated in daily meetings to discuss progress, identify issues, and ensure alignment with team goals 
+                  and timelines.
+              </p>
+              <p>
+                Pixel8 Web Solutions and Consultancy Inc. | February 2024 - May 2024 
+                  Gained proficiency in Git commands, Vue.js, and Quasar during onboarding. 
+                  Facilitated smooth onboarding for new interns as QA, troubleshooting their progress and providing 
+                  support for successful knowledge transfer. 
+                  Developed and optimized responsive web system UIs using Vue.js, Quasar, and JavaScript. 
+                  Collaborated closely with the UI/UX team to address and resolve discrepancies between designs and 
+                  functionality. 
+                  Participated in daily meetings to discuss progress, identify issues, and ensure alignment with team goals 
+                  and timelines.
+              </p>
+
             </div>
-            <div class="box profile-skills profile-order-skills">
-              <h4>Skills</h4>
+            <div class="box box-border profile-skills profile-order-skills expandable-box" id="skillsBox" data-hovertext="Click to show more">
+              <div class="box-preview">
+                <!-- summary or icon/title -->
+                <h3>techStack</h3>
+              </div>
+              <div class="box-detail d-none">
+                <!-- full detailed content -->
+                <p>Detailed explanation, tools used, projects, etc.</p>
+              </div>
             </div>
 
           </div>
@@ -214,7 +383,153 @@
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous" defer></script>
 
-  <script src="js/scripts.js"></script>
+  <script src="./js/scripts.js" defer></script>
+  <script src="./techStack.js" defer></script>   <!-- temporary path -->
+
+  <script>
+    let grid;
+    let lastFocusedEl;
+
+    function clearFullscreen() {
+      document.querySelectorAll(".expandable-box.fullscreen").forEach((b) => {
+        b.classList.remove("fullscreen");
+        if (typeof b._removeFocusTrap === "function") {
+          b._removeFocusTrap();
+          delete b._removeFocusTrap;
+        }
+
+        b.setAttribute("data-hovertext", "Click to show more");
+        b.removeAttribute("role");
+        b.removeAttribute("aria-modal");
+        b.removeAttribute("tabindex");
+      });
+
+      grid?.classList.remove("expanded");
+      document.body.classList.remove("freeze-scroll");
+
+      document.querySelectorAll(".skills-detail").forEach((d) => {
+        d.classList.add("d-none");
+      });
+
+      // 👇 Restore focus after closing
+      if (lastFocusedEl && typeof lastFocusedEl.focus === "function") {
+        lastFocusedEl.focus();
+        lastFocusedEl = null; // clear it after use
+      }
+    }
+
+
+    function setupFocusTrap(modal) {
+      const focusableSelectors = 'a, button, textarea, input, select, [tabindex]:not([tabindex="-1"])';
+      const focusableElements = modal.querySelectorAll(focusableSelectors);
+
+      // Exit early if no focusable elements
+      if (focusableElements.length === 0) return;
+
+      const first = focusableElements[0];
+      const last = focusableElements[focusableElements.length - 1];
+
+      function trap(e) {
+        if (e.key === "Tab") {
+          if (e.shiftKey) {
+            if (document.activeElement === first) {
+              e.preventDefault();
+              last.focus();
+            }
+          } else {
+            if (document.activeElement === last) {
+              e.preventDefault();
+              first.focus();
+            }
+          }
+        }
+      }
+
+      modal.addEventListener("keydown", trap);
+
+      // Optional: remove listener when modal is closed
+      modal._removeFocusTrap = () => modal.removeEventListener("keydown", trap);
+    }
+
+    function setupExpandableBoxes() {
+      const boxes = document.querySelectorAll(".expandable-box");
+      grid = document.querySelector(".profile-grid") || null;
+
+      boxes.forEach((box) => {
+        const newBox = box.cloneNode(true);
+        box.replaceWith(newBox);
+      });
+
+      const freshBoxes = document.querySelectorAll(".expandable-box");
+
+      freshBoxes.forEach((box) => {
+        box.onclick = () => {
+          const isLargeScreen = window.innerWidth >= 993;
+          if (!isLargeScreen) return;
+
+          // Save the element that triggered the expansion
+          lastFocusedEl = document.activeElement;
+
+          const isFullscreen = box.classList.contains("fullscreen");
+
+          clearFullscreen();
+
+          if (!isFullscreen) {
+            box.classList.add("fullscreen");
+            // Show .skills-detail if it exists
+            const details = box.querySelector(".skills-detail");
+            if (details) {
+              details.classList.remove("d-none");
+            }
+
+            grid?.classList.add("expanded");
+
+            box.setAttribute("data-hovertext", "Click to close");
+            document.body.classList.add("freeze-scroll");
+
+            // Accessibility
+            box.setAttribute("role", "dialog");
+            box.setAttribute("aria-modal", "true");
+            box.setAttribute("tabindex", "-1");
+            box.focus();
+
+            // 🔐 Focus trap
+            setupFocusTrap(box);
+
+          }
+        };
+      });
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      setupExpandableBoxes();
+    });
+
+    // 🧼 Debounced resize
+    let resizeTimeout;
+    let wasLargeScreen = window.innerWidth >= 993;
+
+    window.addEventListener("resize", () => {
+      clearTimeout(resizeTimeout);
+
+      resizeTimeout = setTimeout(() => {
+        const isNowLargeScreen = window.innerWidth >= 993;
+
+        // Only re-run setup if we crossed the threshold
+        if (isNowLargeScreen !== wasLargeScreen) {
+          wasLargeScreen = isNowLargeScreen;
+          setupExpandableBoxes();
+        }
+      }, 200);
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") {
+        clearFullscreen();
+      }
+    });
+  </script>
+
 
 </body>
 </html>

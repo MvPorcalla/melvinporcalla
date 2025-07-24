@@ -1,3 +1,5 @@
+ /* profile-grid.css */
+ 
  /* Fill the screen */
   #profile {
     height: 100dvh;
@@ -29,8 +31,12 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    
+    height: 100%;     /* assumes parent has height set */
+    min-height: 0;        /* prevents child overflow from breaking the layout */
   }
 
+  /* Left-profile */
   .profile-info {
     /* flex-grow: 7; */
     height: 70%;
@@ -39,11 +45,18 @@
     /* flex-grow: 3; */
     height: 30%;
   }
+
+  /* Right-profile */
   .profile-experience {
-    flex-grow: 3;
+    /* flex-grow: 7; */
+    flex: 6 1 0%;
+    min-height: 0;        /* prevents child overflow from breaking the layout */
   }
   .profile-skills {
-    flex-grow: 2;
+    /* flex-grow: 3; */
+    flex: 4 1 0%;
+    min-height: 0;        /* prevents child overflow from breaking the layout */
+
   }
 
   .box {
@@ -102,7 +115,7 @@
     .profile-order-skills { order: 2; }
   }
 
-  @media (min-width: 768px) and (max-width: 1024px) {
+  @media (min-width: 768px) and (max-width: 992px) {
     #profile {
       height: auto;
       align-items: flex-start;
@@ -134,3 +147,12 @@
     .profile-order-experience { order: 4; }
     .profile-order-skills { order: 2; }
   }
+  
+
+  @media (min-width: 993px) {
+  .profile-experience,
+  .profile-skills {
+    max-height: 100%;         
+    overflow-y: auto;         
+  }
+}

@@ -3,22 +3,27 @@
 /* ==================================================== Scroll Bar ======================================================= */
 
 /* Custom scrollbar styles for WebKit browsers */
-body::-webkit-scrollbar {
+/* Apply to all scrollable elements in WebKit browsers */
+*::-webkit-scrollbar {
   width: 0.25rem;
+  height: 0.25rem; /* For horizontal scrollbars */
 }
-body::-webkit-scrollbar-track {
+
+*::-webkit-scrollbar-track {
   background: var(--util-color-bg);
 }
-body::-webkit-scrollbar-thumb {
+
+*::-webkit-scrollbar-thumb {
   background: var(--util-color-accent);
 }
-body::-webkit-scrollbar-thumb:hover {
+
+*::-webkit-scrollbar-thumb:hover {
   background: var(--util-color-primary);
 }
 
 /* ======================================================================================================================== */
 
-/* loader animation
+/* loader animation */
 @keyframes fadeInUp {
     to {
         opacity: 1;
