@@ -218,7 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <h2 class="skills-title">${skillsTitle}</h2>
         <p class="skills-desc">${skillsDescription}</p>
 
-        <div class="skills-preview mt-5">
+        <div class="modal-skills-preview mt-5">
           ${skillIconsHTML}
         </div>
       </div>
