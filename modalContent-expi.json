@@ -1,0 +1,26 @@
+{
+  "experiences": [
+    {
+      "company": "Pixel8 Web Solutions and Consultancy Inc.",
+      "role": "Frontend Developer Intern",
+      "duration": "February 2024 - May 2024",
+      "description": [
+        "Gained proficiency in Git commands, Vue.js, and Quasar during onboarding.",
+        "Facilitated smooth onboarding for new interns as QA.",
+        "Developed and optimized responsive UIs using Vue.js, Quasar, and JavaScript.",
+        "Collaborated with UI/UX team to resolve design discrepancies.",
+        "Participated in daily meetings to align with team goals and timelines."
+      ]
+    },
+    {
+      "company": "Another Company",
+      "role": "Web Developer Intern",
+      "duration": "June 2023 - August 2023",
+      "description": [
+        "Worked on legacy systems using PHP and MySQL.",
+        "Created documentation for internal tools.",
+        "Assisted in maintaining company website."
+      ]
+    }
+  ]
+}
