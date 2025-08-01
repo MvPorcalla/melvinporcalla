@@ -13,14 +13,35 @@
       ]
     },
     {
-      "company": "Another Company",
-      "role": "Web Developer Intern",
+      "company": "Freelance",
+      "role": "Web Developer 1",
       "duration": "June 2023 - August 2023",
       "description": [
         "Worked on legacy systems using PHP and MySQL.",
         "Created documentation for internal tools.",
         "Assisted in maintaining company website."
       ]
+    },
+    {
+      "company": "Freelance",
+      "role": "Web Developer 2",
+      "duration": "June 2023 - August 2023",
+      "description": [
+        "Developed and maintained legacy systems using PHP and MySQL.",
+        "Created technical documentation for client-facing tools.",
+        "Provided support and enhancements for client websites."
+      ]
+    },
+    {
+      "company": "Freelance",
+      "role": "Web Developer 3",
+      "duration": "June 2023 - August 2023",
+      "description": [
+        "Developed and maintained legacy systems using PHP and MySQL.",
+        "Created technical documentation for client-facing tools.",
+        "Provided support and enhancements for client websites."
+      ]
     }
+
   ]
 }
